@@ -45,18 +45,22 @@ jobs:
     - stage: deploy
       name: ECS deployment
       env:
-        - ENV=dev
-        - MALAL=qa
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
       script:
         - echo "Deploying to ECS"
         - echo $ENV
-        - echo $MALAL
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
     - stage: build
       name: NPM Build
       env:
-        - ENV=dev
-        - MALAL=qa
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
       script:
         - echo "Building YARN"
         - echo $ENV
-        - echo $MALAL
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
