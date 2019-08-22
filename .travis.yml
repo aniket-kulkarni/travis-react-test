@@ -34,10 +34,6 @@ script:
   - yarn build
   - yarn test
 
-env:
-  - ENV=dev
-  - ENV=qa
-
 stages:
   - name: deploy
     if: branch = master and type = pull_request
@@ -48,9 +44,17 @@ jobs:
   include:
     - stage: deploy
       name: ECS deployment
+      env:
+        - ENV=dev
+        - ENV=qa
       script:
         - echo "Deploying to ECS"
+        - echo $ENV
     - stage: build
       name: NPM Build
+      env:
+        - ENV=dev
+        - ENV=qa
       script:
         - echo "Building YARN"
+        - echo $ENV
