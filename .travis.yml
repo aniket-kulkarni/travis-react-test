@@ -36,9 +36,9 @@ script:
 
 stages:
   - name: deploy
-    if: branch = master
+    if: branch = master and type = pull_request
   - name: build
-    if: branch = branch1
+    if: branch = branch1 and type = pull_request
 
 jobs:
   include:
