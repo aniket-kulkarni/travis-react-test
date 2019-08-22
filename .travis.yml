@@ -38,7 +38,7 @@ stages:
   - name: deploy
     if: branch = master and type = pull_request
   - name: build
-    if: branch = branch1 and type = pull_request
+    if: branch = branch1 and type != pull_request
 
 jobs:
   include:
@@ -46,15 +46,17 @@ jobs:
       name: ECS deployment
       env:
         - ENV=dev
-        - ENV=qa
+        - MALAL=qa
       script:
         - echo "Deploying to ECS"
         - echo $ENV
+        - echo $MALAL
     - stage: build
       name: NPM Build
       env:
         - ENV=dev
-        - ENV=qa
+        - MALAL=qa
       script:
         - echo "Building YARN"
         - echo $ENV
+        - echo $MALAL
