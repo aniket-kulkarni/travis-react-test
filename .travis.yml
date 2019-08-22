@@ -34,6 +34,10 @@ script:
   - yarn build
   - yarn test
 
+env:
+  - ENV=dev
+  - ENV=qa
+
 stages:
   - name: deploy
     if: branch = master and type = pull_request
