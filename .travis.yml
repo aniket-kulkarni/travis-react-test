@@ -12,7 +12,7 @@ before_install:
 
 install:
   - echo I am install
-  - yarn
+  - yarn install
 
 before_script:
   - echo I am before_script
