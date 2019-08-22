@@ -33,3 +33,20 @@ script:
   - echo I am script
   - yarn build
   - yarn test
+
+stages:
+  - name: deploy
+    if: branch = master
+  - name: build
+    if: branch = branch1
+
+jobs:
+  include:
+    - stage: deploy
+      name: ECS deployment
+      script:
+        - echo "Deploying to ECS"
+    - stage: build
+      name: NPM Build
+      script:
+        - echo "Building YARN"
