@@ -13,6 +13,7 @@ before_install:
 
 install:
   - echo I am install
+  - yarn install
 
 before_script:
   - echo I am before_script
@@ -39,12 +40,16 @@ stages:
 
 jobs:
   include:
-    - stage: deploy
-      name: ECS deployment
+    - stage: build
+      name: ECS Build
       env:
         - ENV=dev ENV2=QA
         - ENV3=sc ENV4=prod
-      script:
-        - echo "Deploying to ECS"
-        - yarn install
-        - yarn test
+      script: yarn test
+      script: echo Another parallel job
+    - stage: deploy
+      name: ECS Deploy
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script: echo Deploying Job
