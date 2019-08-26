@@ -30,26 +30,11 @@ before_deploy:
 after_script:
   - echo I am after_script
 
-script:
-  - echo I am script
-  - yarn build
-  - yarn test
-
-stages:
-  - name: deploy
-
 jobs:
   include:
-    - stage: build
-      name: ECS Build
-      env:
-        - ENV=dev ENV2=QA
-        - ENV3=sc ENV4=prod
-      script: yarn test
-      script: echo Another parallel job
+    - stage: test
+      script: ./test 1
+    - # stage name not required, will continue to use `test`
+      script: ./test 2
     - stage: deploy
-      name: ECS Deploy
-      env:
-        - ENV=dev ENV2=QA
-        - ENV3=sc ENV4=prod
-      script: echo Deploying Job
+      script: ./deploy
