@@ -32,8 +32,8 @@ after_script:
 
 jobs:
   include:
-    - stage: build
-      script: ./tester 1
-      script: ./tester 2
+    - stage: test
+      script: bash ./tester.sh
+      script: bash ./tester.sh
     - stage: deploy
       script: ./deploy
