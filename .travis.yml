@@ -9,6 +9,7 @@ cache:
 
 before_install:
   - echo I am before installed
+  - echo $TRAVIS_TAG
 
 install:
   - echo I am install
