@@ -47,13 +47,8 @@ jobs:
       env:
         - ENV=dev ENV2=QA
         - ENV3=sc ENV4=prod
-      script:
-        - echo "Deploying to ECS"
-        - echo $ENV
-        - echo $ENV2
-        - echo $ENV3
-        - echo $ENV4
-      - script: echo la la la
+      script: echo ha ha ha
+    - script: echo la la la
     - stage: build
       name: NPM Build
       env:
