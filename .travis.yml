@@ -8,7 +8,8 @@ cache:
     - node_modules
 
 before_install:
-  - echo I am before install
+  - echo I am before installed
+  - echo $TRAVIS_TAG
 
 install:
   - echo I am install
@@ -33,3 +34,34 @@ script:
   - echo I am script
   - yarn build
   - yarn test
+
+stages:
+  - name: deploy
+    if: branch = master and type = pull_request
+  - name: build
+    if: branch = branch1 and type != pull_request
+
+jobs:
+  include:
+    - stage: deploy
+      name: ECS deployment
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "Deploying to ECS"
+        - echo $ENV
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
+    - stage: build
+      name: NPM Build
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "Building YARN"
+        - echo $ENV
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
