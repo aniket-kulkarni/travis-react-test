@@ -32,7 +32,7 @@ after_script:
 
 jobs:
   include:
-    - stage: test
+    - stage: build
       script: ./test 1
     - # stage name not required, will continue to use `test`
       script: ./test 2
