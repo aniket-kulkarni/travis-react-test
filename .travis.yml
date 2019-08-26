@@ -24,3 +24,6 @@ after_success:
 after_failure:
   - echo I am after_failure
 
+script:
+  - echo I am script
+
