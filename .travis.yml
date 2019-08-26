@@ -1,3 +1,39 @@
 language: node_js
 node_js:
   - 8
+  
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+before_install:
+  - echo I am before installed
+  - echo $TRAVIS_TAG
+
+install:
+  - echo I am install
+  - yarn install
+
+before_script:
+  - echo I am before_script
+
+after_success:
+  - echo I am after_success
+
+after_failure:
+  - echo I am after_failure
+
+before_deploy:
+  - echo I am before_deploy
+
+deploy:
+  - echo I am deploying
+
+after_script:
+  - echo I am after_script
+
+script:
+  - echo I am script
+  - yarn build
+  - yarn test
