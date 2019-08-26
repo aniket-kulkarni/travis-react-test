@@ -35,12 +35,6 @@ script:
   - yarn build
   - yarn test
 
-stages:
-  - name: deploy
-    if: branch = master and type = pull_request
-  - name: build
-    if: branch = branch1 and type != pull_request
-
 jobs:
   include:
     - stage: deploy
