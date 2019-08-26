@@ -30,11 +30,38 @@ before_deploy:
 after_script:
   - echo I am after_script
 
+script:
+  - echo I am script
+  - yarn build
+  - yarn test
+
+
+stages:
+  - name: deploy
+  - name: build
+
 jobs:
   include:
-    - stage: build
-      script: ./test 1
-    - # stage name not required, will continue to use `test`
-      script: ./test 2
     - stage: deploy
-      script: ./deploy
+      name: ECS deployment
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "Deploying to ECS"
+        - echo $ENV
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
+      - script: echo la la la
+    - stage: build
+      name: NPM Build
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "Building YARN"
+        - echo $ENV
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
