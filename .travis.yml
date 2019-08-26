@@ -13,7 +13,6 @@ before_install:
 
 install:
   - echo I am install
-  - yarn install
 
 before_script:
   - echo I am before_script
@@ -36,7 +35,6 @@ script:
   - yarn test
 
 stages:
-  - name: build
   - name: deploy
 
 jobs:
@@ -48,10 +46,8 @@ jobs:
         - ENV3=sc ENV4=prod
       script:
         - echo "Deploying to ECS"
-        - echo $ENV
-        - echo $ENV2
-        - echo $ENV3
-        - echo $ENV4
+        - yarn install
+        - yarn test
     - stage: build
       name: NPM Build
       env:
