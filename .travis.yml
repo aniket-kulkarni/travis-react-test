@@ -9,8 +9,8 @@ cache:
     - node_modules
 
 env: 
-  ENV=dev
-  ENV=qa
+  - ENV=dev
+  - ENV=qa
 
 before_install:
   - echo I am before installed
