@@ -8,10 +8,6 @@ cache:
   directories:
     - node_modules
 
-env: 
-  - ENV=dev
-  - ENV=qa
-
 before_install:
   - echo I am before installed
   - echo $TRAVIS_TAG
@@ -29,13 +25,29 @@ after_success:
 after_failure:
   - echo I am after_failure
 
-before_deploy:
-  - echo I am before_deploy
+stages:
+  - name: test
+  - name: build
 
-after_script:
-  - echo I am after_script
-
-script:
-  - echo I am script
-  - yarn build
-  - yarn test
+jobs:
+  include:
+    - stage: test
+      name: ECS deployment
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "unit test"
+        - echo 'SOmethinbg'
+    - script: echo 'integration test'
+    - stage: build
+      name: NPM Build
+      env:
+        - ENV=dev ENV2=QA
+        - ENV3=sc ENV4=prod
+      script:
+        - echo "Building YARN"
+        - echo $ENV
+        - echo $ENV2
+        - echo $ENV3
+        - echo $ENV4
