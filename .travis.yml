@@ -24,29 +24,3 @@ after_success:
 after_failure:
   - echo I am after_failure
 
-stages:
-  - name: test
-  - name: build
-
-jobs:
-  include:
-    - stage: test
-      name: ECS deployment
-      env:
-        - ENV=dev ENV2=QA
-        - ENV3=sc ENV4=prod
-      script:
-        - echo "unit test"
-        - echo 'SOmethinbg'
-    - script: echo 'integration test'
-    - stage: build
-      name: NPM Build
-      env:
-        - ENV=dev ENV2=QA
-        - ENV3=sc ENV4=prod
-      script:
-        - echo "Building YARN"
-        - echo $ENV
-        - echo $ENV2
-        - echo $ENV3
-        - echo $ENV4
