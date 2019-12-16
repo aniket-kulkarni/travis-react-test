@@ -22,5 +22,4 @@ after_success:
   - echo I am after_success
 
 after_failure:
-  - echo I am after_failure
-
+  - echo TDD
